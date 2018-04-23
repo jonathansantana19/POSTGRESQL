@@ -1,0 +1,17 @@
+ WITH rows AS (
+ INSERT INTO CLIENTES (nome, cpf_cnpj, rg_ie, tel, cel, ramal, data_nascimento, sexo, email, id_endereco, data_hora)
+VALUES('TESTENOVOCLIENTE' , '222','111','22222','22222','1' , '2017-12-02','MASCULINO', 'EMAIL' , 0 , NOW()) 
+   RETURNING id
+)
+
+INSERT INTO ENDERECOS(LOGADOURO ,NUMERO ,  COMPLEMENTO ,   BAIRRO ,   CIDADE,   UF , ID_CLIENTE )  
+SELECT 
+'TESTE ENDERECO2' AS  LOGADOURO , 
+'21' AS NUMERO ,   
+'102' AS COMPLEMENTO ,
+'PORTAO' BAIRRO , 
+'CIDADE' AS CIDADE , 
+'PR' AS UF,
+id
+    FROM rows
+    RETURNING id;
